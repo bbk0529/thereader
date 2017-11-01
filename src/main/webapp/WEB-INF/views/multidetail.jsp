@@ -32,7 +32,10 @@ $(document).ready(function(){
 		 	text+=$(this).serialize();
 	    });
 		text = decodeURIComponent(text);
-		watsonNLU(text);		
+		let sender=$('#sender').text();
+		let date=$('#date').text();
+		
+		watsonNLU(sender, date, text);			
     });
 });
 
@@ -83,11 +86,11 @@ function barchart_blue(val){
 	return '<img src="./resources/img/point_blue.png" height="10" width=" '+ w + '"/>';
 };
 
-function watsonNLU(text){
+function watsonNLU(sender, date, text){
 	$.ajax({
 		url : "callWatson",
 		type : "POST",
-		data : text,
+		data : '&sender=' + sender +'&date=' + date + '&text=' + text,
 		success : function(data) {
 			if(data != null) {
 				console.log(data);
@@ -133,8 +136,8 @@ function watsonNLU(text){
 				<h5>REMARK</h5>
 			</div>
 			<div class="col-sm-3">
-				<h5>${vo.sender}</h5>
-				<h5>${vo.date}</h5>
+				<h5 id="sender">${vo.sender}</h5>				
+				<h5 id="date">${vo.date}</h5>
 				<h5 class="wordcount">${vo.wordcount}</h5>
 				<h5>${vo.remark}</h5>
 				<input type="hidden" value="${vo.wordcount}">

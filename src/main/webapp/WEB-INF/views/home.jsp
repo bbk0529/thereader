@@ -33,13 +33,13 @@ $(document).ready(function(){
 	          data2: "area-spline"
 	        },
 	        colors: {
-	          data1: "red",
-	          data2: "green"
+	          data1: "grey",
+	          data2: "black"
 	        }
 	    }
 	});
-}); */
-
+}); 
+ */
 
 </script>
 
@@ -65,13 +65,15 @@ $(document).ready(function(){
 	<div class="row">
 		<div class="col-sm-2 col-xs-2"></div>
 		<div class="col-sm-2 col-xs-2" style="text-align: center;">
+			<a href="searchdata?keyword=">
 			<img src="./resources/img/1.jpg" class="img-rounded" style="width:100%">
-			<a href="searchdata?keyword="><h3>DATABASE</h3>
+			<h3>DATABASE</h3>
 			<p name="list">bbk0529@gmail.com</p></a>
 		</div>
 		<div class="col-sm-2 col-xs-2" style="text-align: center;">
+			<a href="insert">
 			<img src="./resources/img/2.jpg" class="img-rounded" style="width:100%">
-			<a href="insert"><h3>INPUT</h3>
+			<h3>INPUT</h3>
 			<p  name="insert">Input emails manually</p></a>
 		</div>
 		<div class="col-sm-2 col-xs-2" style="text-align: center;">
@@ -80,13 +82,18 @@ $(document).ready(function(){
 			<p  name="summary">Scrapping your emails</p>
 		</div>
 		<div class="col-sm-2 col-xs-2" style="text-align: center;">
+			<a href="summary">
 			<img src="./resources/img/4.jpg" class="img-rounded" style="width:100%">
 			<h3>SUMMARY</h3>
-			<p  name="detail">Summary of Analysis</p>
+			<p  name="summary">Summary of Analysis</p></a>
 		</div>		
 	</div>
-</div>
 
-<div id="chart"></div>
+	<div class="row">
+	<div class="col-sm-1 col-sx-1"></div>
+		<div id="chart"></div>
+	<div class="col-sm-1 col-sx-1"></div>
+	</div>
+</div>
 </body>
 </html>

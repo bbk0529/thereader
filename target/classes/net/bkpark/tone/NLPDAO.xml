@@ -8,6 +8,13 @@
 		insert into tbl_email(sender, date, subject, text, wordcount)
 		values(#{sender},#{date},#{subject},#{text},#{wordcount})
 	</insert>
+	
+	
+	<insert id="insertPI" parameterType="PIVO">
+		insert into tbl_PI(sender,	date,	Openness,	Adventurousness,	Artistic_interests,	Emotionality,	Imagination,	Intellect,	Authority_challenging,	Conscientiousness,	Achievement_striving,	Cautiousness,	Dutifulness,	Orderliness,	Self_discipline,	Self_efficacy,	Extraversion,	Activity_level,	Assertiveness,	Cheerfulness,	Excitement_seeking,	Outgoing,	Gregariousness,	Agreeableness,	Altruism,	Cooperation,	Modesty,	Uncompromising,	Sympathy,	Trust,	Emotional_range,	Fiery,	Prone_to_worry,	Melancholy,	Immoderation,	Self_consciousness,	Susceptible_to_stress)
+		values(#{sender},	#{date},	#{Openness},	#{Adventurousness},	#{Artistic_interests},	#{Emotionality},	#{Imagination},	#{Intellect},	#{Authority_challenging},	#{Conscientiousness},	#{Achievement_striving},	#{Cautiousness},	#{Dutifulness},	#{Orderliness},	#{Self_discipline},	#{Self_efficacy},	#{Extraversion},	#{Activity_level},	#{Assertiveness},	#{Cheerfulness},	#{Excitement_seeking},	#{Outgoing},	#{Gregariousness},	#{Agreeableness},	#{Altruism},	#{Cooperation},	#{Modesty},	#{Uncompromising},	#{Sympathy},	#{Trust},	#{Emotional_range},	#{Fiery},	#{Prone_to_worry},	#{Melancholy},	#{Immoderation},	#{Self_consciousness},	#{Susceptible_to_stress})
+	</insert>
+	
 		
 	<select id="getDetail" resultType="EmailVO" parameterType="int">
 		select no, sender, date, subject, text, wordcount 
@@ -15,9 +22,21 @@
 		where no=#{no}	
 	</select>
 	
+	<select id="readPI" resultType="PIVO" parameterType="String">
+		select no, sender,	date,	Openness,	Adventurousness,	Artistic_interests,	Emotionality,	Imagination,	Intellect,	Authority_challenging,	Conscientiousness,	Achievement_striving,	Cautiousness,	Dutifulness,	Orderliness,	Self_discipline,	Self_efficacy,	Extraversion,	Activity_level,	Assertiveness,	Cheerfulness,	Excitement_seeking,	Outgoing,	Gregariousness,	Agreeableness,	Altruism,	Cooperation,	Modesty,	Uncompromising,	Sympathy,	Trust,	Emotional_range,	Fiery,	Prone_to_worry,	Melancholy,	Immoderation,	Self_consciousness,	Susceptible_to_stress 
+		from tbl_PI
+		where sender=#{sender}	
+	</select>
+	
 	<select id="getSender" resultType="String">
 		select distinct sender 
 		from tbl_email		
+	</select>
+	
+	
+	<select id="getSenderW" resultType="String">
+		select sender 
+		from tbl_PI
 	</select>
 	
 	<select id="getEmailDate" resultType="Date">
@@ -26,11 +45,7 @@
 		order by 1 desc
 	</select>
 		
-	<select id="getList" resultType="EmailVO">
-		select no, sender, date, subject, text, wordcount 
-		from tbl_email	
-	</select>
-		
+	
 	<select id="searchData" resultType="EmailVO" parameterType="String">
 		select no, sender, date, subject, text, wordcount 
 		from tbl_email	

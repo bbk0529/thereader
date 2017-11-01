@@ -34,9 +34,10 @@
 			/* contentType : "application/json; charset=UTF-8", */
 			success : function(data) {
 				if(data != null) {
-						a="<h4>입력하신 email 이 DB에 정상적으로 잘 저장 되었습니다.</h4>";
+						alert('Your email has been successfully saved in the Database');
+						/* a="<br/><center><h4>입력하신 email 이 DB에 정상적으로 잘 저장 되었습니다.</h4></center>"; */
 						console.log(a); 
-						document.getElementById("result").innerHTML = a;
+						/* document.getElementById("result").innerHTML = a; */
 						$("form").each(function() {  
 					    	this.reset();  
 					    });  
@@ -93,7 +94,7 @@
 			<div class="col-xs-12">
 				<br/>
 				<label for="ex1">CONTENTS</label>
-				<textarea class="form-control col-sm-5" name="text" rows="10">Your email may be inserted herein.</textarea>
+				<textarea class="form-control col-sm-5" name="text" rows="10">your emails are written herein</textarea>
 			</div>
 		</div>
 		<div class="row">

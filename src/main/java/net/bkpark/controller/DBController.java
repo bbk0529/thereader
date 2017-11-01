@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.bkpark.tone.EmailVO;
 import net.bkpark.tone.NLPService;
+import net.bkpark.tone.PIVO;
 
 @Controller
 public class DBController {
@@ -23,19 +24,6 @@ public class DBController {
 	@Autowired
 	private NLPService nlpService;
 	
-	@RequestMapping("list")
-	public void list(Model model){
-		List<EmailVO> list = new ArrayList<EmailVO>();		
-		String [] sender; 
-		Date [] emaildate;				
-		list=nlpService.getList();
-		sender=nlpService.getSender();
-		emaildate=nlpService.getemaildate();				
-		model.addAttribute("list", list); 
-		model.addAttribute("sender", sender);
-		model.addAttribute("emaildate", emaildate);
-	}
-
 	@RequestMapping("detail")
 	public ModelAndView detail(int no) {
 		EmailVO vo = nlpService.detail(no); 
@@ -56,9 +44,16 @@ public class DBController {
 		
 	}
 	
+	@RequestMapping("insertPI")
+	@ResponseBody
+	public void insertPI(PIVO vo) {	
+		nlpService.insertPI(vo);
+	}
+	
+	
 	@RequestMapping("searchdata")
 	public void searchData(Model model, String keyword) {
-		System.out.println(keyword);
+		//System.out.println(keyword);
 		List<EmailVO> list = new ArrayList<EmailVO>();		
 		String [] sender; 
 		Date [] emaildate;			
@@ -70,6 +65,15 @@ public class DBController {
 		model.addAttribute("emaildate", emaildate);
 	}
 	
+	@RequestMapping("summary")
+	public ModelAndView summary() {
+		String [] sender;					
+		sender=nlpService.getSenderW();
+		System.out.println(sender.toString());
+		return new ModelAndView ("summary", "sender", sender);
+	}
+	
+	
 	@RequestMapping("multidetail")
 	public String multidetail(Model model, String param) {
 		String pk[] = param.split(",");
@@ -78,9 +82,18 @@ public class DBController {
 		for (String a : pk) {
 			list.add(nlpService.detail(Integer.parseInt(a)));
 		}
-		System.out.println(list.toString());
+		//System.out.println(list.toString());
 		model.addAttribute("list", list);
 		return "multidetail";
+	}
+	
+	@RequestMapping("readPI")
+	@ResponseBody
+	public PIVO readPI (String sender) {
+		System.out.println("SENDER FOR readPI   " + sender);
+		PIVO vo=nlpService.readPI(sender);
+		System.out.println(vo.toString());
+		return vo;
 	}
 	
 }

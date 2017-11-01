@@ -16,9 +16,11 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#callwatson').click(function() {
+			let sender=$('#sender').text();
+			let date=$('#date').text();
 			let text=$('#text').serialize();
 			text = decodeURIComponent(text);
-			watsonNLU(text);		
+			watsonNLU(sender, date, text);		
 		})
 		
 		var num=0;
@@ -77,11 +79,14 @@
 		return '<img src="./resources/img/point_blue.png" height="10" width=" '+ w + '"/>';
 	};
 	
-	function watsonNLU(text){
+	function watsonNLU(sender, date, text){
+		console.log('sender' + sender);
+		console.log('date' + date);
+		/* //console.log('text' + text); */
 		$.ajax({
 			url : "callWatson",
 			type : "POST",
-			data : text,
+			data : '&sender=' + sender +'&date=' + date + '&text=' + text,
 			success : function(data) {
 				if(data != null) {
 					console.log(data);
@@ -89,6 +94,7 @@
 					a=children(data);					
 					console.log(a); 
 					document.getElementById("result").innerHTML = a;
+					
 					
 				} else {
 					alert('data is null');
@@ -122,23 +128,23 @@
 	<div class="row">
 	<div class="col-sm-12">
 		<div class="row">
-			<div class="col-sm-2">
-				<h3>sender</h3>
-				<p  name="sender">${vo.sender}</p>
+			<div class="col-sm-3">
+				<h3>SENDER</h3>
+				<p  name="sender" id="sender">${vo.sender}</p>
 			</div>
 			<div class="col-sm-2">
-				<h3>date</h3>
-				<p  name="date">${vo.date}</p>
+				<h3>DATE</h3>
+				<p  name="date" id="date">${vo.date}</p>
 			</div>
-			<div class="col-sm-8">
-				<h3>subject</h3>
+			<div class="col-sm-7">
+				<h3>SUBJECT</h3>
 				<p  name="subject">${vo.subject}</p>
 				<input type="hidden" value="${vo.wordcount}">
 			</div>	
 		</div>		
 		<div class="row">
 			<div class="col-sm-12">
-				<h3>Text</h3>
+				<h3>TEXT</h3>
 			</div>
 			<div class="form-group row">
 			<div class="col-xs-12">

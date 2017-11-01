@@ -19,11 +19,6 @@ public class NLPServiceImpl implements NLPService{
 	}
 
 	@Override
-	public List<EmailVO> getList() {
-		return nlpDAO.getList();
-	}
-
-	@Override
 	public EmailVO detail(int no) {
 		return nlpDAO.getDetail(no);
 	}
@@ -43,6 +38,11 @@ public class NLPServiceImpl implements NLPService{
 	}
 
 	@Override
+	public String[] getSenderW() {
+		return nlpDAO.getSenderW();
+	}
+	
+	@Override
 	public Date[] getemaildate() {
 		return nlpDAO.getEmailDate();
 	}
@@ -52,5 +52,20 @@ public class NLPServiceImpl implements NLPService{
 		System.out.println("inputted keyword is :" + keyword);
 		return nlpDAO.searchData(keyword);
 	}
+
+	@Override
+	public void insertPI(PIVO vo) {
+		nlpDAO.insertPI(vo);
+		
+	}
+
+	@Override
+	public PIVO readPI(String sender) {
+		System.out.println("inputted keyword for readPI in NLPServiceImpl :" + sender);
+		PIVO vo = nlpDAO.readPI(sender); 
+		return vo;
+	}
+
+	
 
 }
