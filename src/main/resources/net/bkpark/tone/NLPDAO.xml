@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper      
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"      
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.bkpark.tone.NLPDAO">
+	<insert id="insertEmail" parameterType="EmailVO">
+		insert into tbl_email(sender, date, subject, text, wordcount)
+		values(#{sender},#{date},#{subject},#{text},#{wordcount})
+	</insert>
+		
+	<select id="getDetail" resultType="EmailVO" parameterType="int">
+		select no, sender, date, subject, text, wordcount 
+		from tbl_email
+		where no=#{no}	
+	</select>
+	
+	<select id="getSender" resultType="String">
+		select distinct sender 
+		from tbl_email		
+	</select>
+	
+	<select id="getEmailDate" resultType="Date">
+		select distinct date  
+		from tbl_email		
+		order by 1 desc
+	</select>
+		
+	<select id="getList" resultType="EmailVO">
+		select no, sender, date, subject, text, wordcount 
+		from tbl_email	
+	</select>
+		
+	<select id="searchData" resultType="EmailVO" parameterType="String">
+		select no, sender, date, subject, text, wordcount 
+		from tbl_email	
+		where 1=1
+		and subject like concat('%',#{keyword},'%')
+		or sender like concat('%',#{keyword},'%')
+		or text like concat('%',#{keyword},'%')		    	
+		or date like concat('%',#{keyword},'%')
+	</select>
+	
+</mapper>
