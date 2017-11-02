@@ -19,34 +19,8 @@
 <link rel="stylesheet" href="<c:url value=""/>" />
 <link rel="stylesheet" href="./resources/css/billboard.css">
 <script type="text/javascript">
- /* 
-$(document).ready(function(){
-	bb.generate({
-	    bindto: "#chart",
-	    data: {
-	        columns: [
-	            ["data1", 30, 200, 100, 170, 150, 250],
-	            ["data2", 130, 100, 140, 35, 110, 50]
-	        ],
-	        types: {
-	          data1: "line",
-	          data2: "area-spline"
-	        },
-	        colors: {
-	          data1: "grey",
-	          data2: "black"
-	        }
-	    }
-	});
-});  */
-
-
 </script>
-
-
 </head>
-
-
 <body>
 <br/><br/><br/><br/>
 <div class="container">	
@@ -66,26 +40,27 @@ $(document).ready(function(){
 		<div class="col-sm-2 col-xs-2"></div>
 		<div class="col-sm-2 col-xs-2" style="text-align: center;">
 			<a href="searchdata?keyword=">
-			<img src="./resources/img/1.jpg" class="img-rounded" style="width:100%">
+			<img src="./resources/img/1.jpg" class="img-rounded" style="width:100%"></a>
 			<h3>DATABASE</h3>
-			<p name="list">bbk0529@gmail.com</p></a>
+			<p name="list">bbk0529@gmail.com</p>
 		</div>
 		<div class="col-sm-2 col-xs-2" style="text-align: center;">
 			<a href="insert">
-			<img src="./resources/img/2.jpg" class="img-rounded" style="width:100%">
+			<img src="./resources/img/2.jpg" class="img-rounded" style="width:100%"></a>
 			<h3>INPUT</h3>
-			<p  name="insert">Input emails manually</p></a>
+			<p  name="insert">Input emails manually</p>
 		</div>
 		<div class="col-sm-2 col-xs-2" style="text-align: center;">
-			<img src="./resources/img/3.jpg" class="img-rounded" style="width:100%">
+			<a href="./resources/doc/BKPARK_171102.pptx">
+			<img src="./resources/img/3.jpg" class="img-rounded" style="width:100%"></a>
 			<h3  >IMPORTING</h3>
 			<p  name="summary">Scrapping your emails</p>
 		</div>
 		<div class="col-sm-2 col-xs-2" style="text-align: center;">
 			<a href="summary">
-			<img src="./resources/img/4.jpg" class="img-rounded" style="width:100%">
+			<img src="./resources/img/4.jpg" class="img-rounded" style="width:100%"></a>
 			<h3>SUMMARY</h3>
-			<p  name="summary">Summary of Analysis</p></a>
+			<p  name="summary">Summary of Analysis</p>
 		</div>		
 	</div>
 

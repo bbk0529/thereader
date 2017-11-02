@@ -19,13 +19,7 @@
 	<script type="text/javascript">
 
 $(document).ready(function() {
-    var param=getUrlParams();
-	
-	$(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-        $(this).data
-    });
-    
+
     $("#sender").change(function(){
     	$(location).attr('href','searchdata?keyword=' + $('#sender').val());
     })
@@ -34,6 +28,7 @@ $(document).ready(function() {
     	$(location).attr('href','searchdata?keyword=' + $('#emaildate').val());
     })
 
+    
 	$('#keyword').keypress(function(e){ 
 		if (e.which === 13){
 			if ($('#keyword').val()=='') {
@@ -48,7 +43,6 @@ $(document).ready(function() {
 		$(location).attr('href','searchData?keyword=' + $('#keyword').val());		 
     });
     
-    
     $("#multidetail").click(function() {
     	let param="";
     	var i=0;
@@ -62,26 +56,16 @@ $(document).ready(function() {
 				$(location).attr('href','multidetail?param=' + param);
 	    	}
     });
-    
     $('#chkall').click(function () {    
         $('input:checkbox').prop('checked', this.checked);    
     });
  
 });
-
-
-function getUrlParams() {
-	var params = {};
-	window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, 	
-			function(str, key, value){ 
-				params[key] = value; 
-			});
-	return params;
-} 
-
 </script>
 </head>
 
+
+<!-- BODY START -->
 <body>
 <div class="container">
 	<div class="row">
@@ -145,16 +129,13 @@ function getUrlParams() {
 			<th class="col-sm-1 col-xs-1">SENDER</th>
 			<th class="col-sm-2 col-xs-2">DATE</th>
 			<th class="col-sm-4 col-xs-4">SUBJECT</th>
-			<!-- <th>TEXT</th> -->
 			<th class="col-sm-1 col-xs-1">WORDS</th>
-			<!-- <th>REMARK</th> -->
 		</tr>
 		</thead>		
 		<tbody>
 		
 		 <c:forEach items="${list}" var="list">
 		 <tr class="chkclass">
-		 <%-- <tr class='clickable-row' data-href='detail?no=${list.no}'> --%>
 			<td><input type="checkbox" id="chk" value="${list.no}"></td>
 			<td onclick="window.location.assign('detail?no=${list.no}');">${list.no}</td>
 			<td onclick="window.location.assign('detail?no=${list.no}');">${list.sender}</td>
@@ -183,7 +164,6 @@ function getUrlParams() {
 			<a href="./"><button type="button" id="home" class="btn btn-default"/>HOME</button></a>
 		</div>
 	</div>
-<div id="result"></div>
 
 </body>
 </html>

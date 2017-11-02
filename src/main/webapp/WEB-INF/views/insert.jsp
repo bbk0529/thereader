@@ -99,7 +99,7 @@
 		</div>
 		<div class="row">
 		<div class="col-sm-12" style="text-align: center;">
-			<button id="submit" type="button" class="btn btn-default" />SUBMIT</button>
+			<button id="submit" type="button" class="btn btn-primary" />SUBMIT</button>
 			<button type="button" class="btn btn-default" onclick="javascript:history.back()"/>BACK</button>
 			<a href="./"><button type="button" id="home" class="btn btn-default"/>HOME</button></a>
 		</div>

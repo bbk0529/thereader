@@ -40,7 +40,6 @@ $(document).ready(function(){
 });
 
 
-
 function children(data){
 	var a='';
 	a +="<div class='container'><div class='row'><div class='col-xs-12'>";
@@ -98,7 +97,6 @@ function watsonNLU(sender, date, text){
 				a=children(data);					
 				console.log(a); 
 				document.getElementById("result").innerHTML = a;
-				
 			} else {
 				alert('data is null');
 			}
