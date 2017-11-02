@@ -11,101 +11,33 @@
 <title>SUMMARY</title>
 <link rel="shortcut icon" href="/favicon.ico" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="./resources/css/billboard.css">
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="./resources/js/billboard.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-	var data1 = new Array();	
-	var data2 = new Array();
-	data1=[];
-	data2=[];
-
-	$(function() {
-		
-		var chart =bb.generate({
-		    "bindto": "#chart",
-		    "data": {
-		        "columns": [
-		        ],
-		        "types": {
-		        	"data1": "step",
-		            "data2": "area-step"
-		        },
-		        "colors": {
-		          data1: "grey",
-		          data2: "black"
-		        }
-		    },
-		    
-		    "legend": {
-		        "position": "right"
-		     },
-			"axis": {
-			    "x": {
-			      "type": "category",
-			      "categories": [
-			    	"Openness",
-			    	"Adventurousness",
-			    	"Artistic_interests",
-			    	"Emotionality",
-			    	"Imagination",
-			    	"Intellect",
-			    	"Authority_challenging",
-			    	"Conscientiousness",
-			    	"Achievement_striving",
-			    	"Cautiousness",
-			    	"Dutifulness",
-			    	"Orderliness",
-			    	"Self_discipline",
-			    	"Self_efficacy",
-			    	"Extraversion",
-			    	"Activity_level",
-			    	"Assertiveness",
-			    	"Cheerfulness",
-			    	"Excitement_seeking",
-			    	"Outgoing",
-			    	"Gregariousness",
-			    	"Agreeableness",
-			    	"Altruism",
-			    	"Cooperation",
-			    	"Modesty",
-			    	"Uncompromising",
-			    	"Sympathy",
-			    	"Trust",
-			    	"Emotional_range",
-			    	"Fiery",
-			    	"Prone_to_worry",
-			    	"Melancholy",
-			    	"Immoderation",
-			    	"Self_consciousness",
-			    	"Susceptible_to_stress"
-			      ]
-			    }
-		 }
-		}); // var chart  
-		
+	$(document).ready(function() {
 		$("#sender1").change(function() {
 			var sender = $('#sender1').val();
 			$('#name1').text(sender);
-			readPI(sender, "data1", chart);
-		}); //#sender1
+			readPI(sender, "report1");
+		})
+	});
 	
+	$(document).ready(function() {
 		$("#sender2").change(function() {
 			var sender = $('#sender2').val();
 			$('#name2').text(sender);
-			readPI(sender, "data2", chart);
-		}); //#sender2
-	}); // $(function)
+			readPI(sender, "report2");
+		})
+	});
+	
 
-	
-	
-	
-	
-	function readPI(sender, window, chart) {
+	function readPI(sender, showwindow) {
 		console.log('function readPI' + sender);
 		$.ajax({
 			url : "readPI",
@@ -114,40 +46,18 @@
 			data : 'sender=' + sender,
 			success : function(data) {
 				console.log(data);
-				document.getElementById(window).innerHTML = parser(data);
-				
-				if (window=="data1") { data1=datainput(data);};
-				if (window=="data2") { data2=datainput(data);};
-				chart.category(2, "Category 3");
-				chart.load({
-				    columns: [
-				       data1,
-				       data2
-				   ]
-				 }); // chart.load
+				document.getElementById(showwindow).innerHTML = parser(data);
 			},
 			error : function(request, status, error) {
-				console.log("code:" + request.status + "\n" + "message:"+ request.responseText + "\n" + "error:" + error);
+
+				console.log("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
 			}
 		});
-	};
-	
-	function datainput(data){
-		var arr = new Array();		
-		$.each(data, function (key,val){
-			if (key=='sender') { arr.push(val); };
-			if (key!='no' && key!='date' && key!='sender') {
-				arr.push(val)
-			};
-		});
-		console.log(arr);
-		return arr;
 	};
 
 	function parser(data) {
 		var a='';
-		
-		
 		a+="<table class='table'>";
 		$.each(data, function(key, val) {
 			if (key!='no' && key!='date' && key!='sender') {
@@ -209,28 +119,37 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6">
-
-					<h3 id="name1">sender1</h3>
-					<div id="data1"></div>
+					
 					<select name="sender1" id="sender1">
 						<option></option>
 						<c:forEach items="${sender}" var="sn">
 							<option value="${sn}"> ${sn} </option>
 						</c:forEach>
 					</select>
+					<h3 id="name1">sender1</h3>
+					<div id="report1"></div>
 			</div>
 			<div class="col-sm-6">
 					
-					
-					<h3 id="name2">sender2</h3>
-					<div id="data2"></div>
 					<select name="sender2" id="sender2">
 						<option></option>
 						<c:forEach items="${sender}" var="sn">
 							<option value="${sn}"> ${sn} </option>
 						</c:forEach>
 					</select>
-			</div>		
+					<h3 id="name2">sender2</h3>
+					<div id="report2"></div>
+			</div>
+			<%-- <div class="col-sm-4">
+					<h3>sender1</h3>
+					<select name="sender3" id="sender3">
+						<option></option>
+						<c:forEach items="${sender}" var="sn">
+							<option value="${sn}"> ${sn} </option>
+						</c:forEach>
+					</select>
+					<div id="report3"></div>
+			</div> --%>
 		</div>
 		
 		
@@ -254,9 +173,6 @@
 
 	<br />
 	<br />
-	<div class="row">
-		<div class="col-sm-1"></div>
-		<div class="col-sm-11"><div id="chart"></div></div>
-	</div>
+	<div id="result"></div>
 </body>
 </html>
